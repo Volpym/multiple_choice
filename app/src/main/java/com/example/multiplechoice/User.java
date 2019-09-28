@@ -31,7 +31,19 @@ public class User implements Users {
 
     @Override
     public int register(String username, String email, String password) {
-        return 0;
+        int response = 0;
+        try {
+            URL url= new URL("http://localhost/icd_tei_ser/script/user/register.php?username="+username+"&email="+email+"&password="+password);
+            System.out.println(url);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            response = connection.getResponseCode();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return response;
     }
 
     @Override
