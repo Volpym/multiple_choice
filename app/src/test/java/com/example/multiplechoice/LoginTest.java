@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 
 import static org.junit.Assert.*;
 
-public class UserTest {
+public class LoginTest {
 
     @Test
     public void isValid(){
