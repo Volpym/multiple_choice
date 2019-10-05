@@ -20,36 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-       getQuestionFromDB.execute();
+
 
 
     }
 
 
-    private  class getQuestionFromDB extends AsyncTask<Void, Void, ArrayList<Question>> {
-        @Override
-        protected ArrayList<Question> doInBackground(Void... voids) {
-            ArrayList<Question> questionnaire = new ArrayList<>();
-            Question q = new Question();
-            try {
-                for (int i = 0; i < q.setJson().length(); i++) {
-                    Question newQuestion = new Question();
-                    newQuestion.json = q.json;
-                    newQuestion.setQuestion_id(i);
-                    newQuestion.setQuestion_txt(i);
-                    questionnaire.add(newQuestion);
-                }
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-            }
 
-            return null;
-        }
-        @Override
-        protected void onPostExecute(ArrayList<Question> questionnaire) {
-            super.onPostExecute(questionnaire);
-    }
-    }
 }
 
 
