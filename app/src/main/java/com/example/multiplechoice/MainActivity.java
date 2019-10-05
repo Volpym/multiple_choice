@@ -2,12 +2,13 @@ package com.example.multiplechoice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
-import java.io.File;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,5 +17,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+
+
+
     }
+
+
+
 }
+
+
+
+
