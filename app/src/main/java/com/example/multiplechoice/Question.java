@@ -40,6 +40,7 @@ public class Question{
     public String getQuestion() {
         return question;
     }
+
     public int getId() {
         return id;
     }
@@ -64,9 +65,23 @@ public class Question{
         return correctAnswer;
     }
 
+    public boolean isCorrect(String answer, String correctAnswer){
+        boolean value;
+        if (answer.equals(correctAnswer)){
+            value = true;
+        }else{
+            value = false;
+        }
+        return value;
+    }
+
+
+
+
+
     public static List<Question> fetchQuestions () throws JSONException, IOException {
 
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost/icd_tei_ser/script/question/get_questions.php").openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://192.168.1.6/icd_tei_ser/script/question/get_questions.php").openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-length", "0");
         connection.setUseCaches(false);
@@ -106,6 +121,8 @@ public class Question{
         return questions;
 
     }
+
+
 
 }
 

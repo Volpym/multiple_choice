@@ -6,100 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/eQuestion"
-        android:layout_width="400dp"
-        android:layout_height="210dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/eNumberOfQuestions"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:text="0/100"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="@+id/textViewQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
+
+    <TextView
+        android:id="@+id/eScore"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:text="Score: "
+        app:layout_constraintStart_toStartOf="@+id/textViewQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="380dp"
+        android:layout_height="187dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.03" />
 
-    <TextView
-        android:id="@+id/eNumberOfQuestions"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="0/100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion" />
-
-    <TextView
-        android:id="@+id/eScore"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Score: "
-        app:layout_constraintEnd_toStartOf="@+id/eNumberOfQuestions"
+    <Button
+        android:id="@+id/bAnswer1"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        android:text="Button"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewQuestion"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion" />
+        app:layout_constraintStart_toStartOf="@+id/textViewQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
 
-    <TextView
-        android:id="@+id/eAnswer1"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="8dp"
-        android:text="Answer 1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/bAnswer2"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:text="Button"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/bAnswer1"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/bAnswer1"
+        app:layout_constraintTop_toBottomOf="@+id/bAnswer1" />
 
-    <TextView
-        android:id="@+id/eAnswer2"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="Answer 2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/bAnswer3"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:text="Button"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/bAnswer2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintStart_toStartOf="@+id/bAnswer2"
+        app:layout_constraintTop_toBottomOf="@+id/bAnswer2" />
 
-    <TextView
-        android:id="@+id/eAnswer3"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="Answer 3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/bAnswer4"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:text="Button"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/bAnswer3"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion"
-        app:layout_constraintVertical_bias="0.48" />
-
-    <TextView
-        android:id="@+id/eAnswer4"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="Answer 4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eQuestion"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintStart_toStartOf="@+id/bAnswer3"
+        app:layout_constraintTop_toBottomOf="@+id/bAnswer3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

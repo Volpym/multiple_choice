@@ -32,5 +32,6 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.2"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
     annotationProcessor "android.arch.persistence.room:compiler:$lifecycle_version"
-    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+
 }
+
