@@ -3,22 +3,19 @@ package com.example.multiplechoice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONException;
-
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
+
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,9 +26,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Bundle savedInstanceState;
     PointSystem pointSystem = new PointSystem();
     int iterator = 0;
+    private CountDownTimer countDownTimer;
+    private long timeLeft;
+
+
+
+
     private TextView tQuestion;
     private TextView questionNumber;
     private TextView score;
+    private TextView timer;
     private Button answer1;
     private Button answer2;
     private Button answer3;
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Toast correct_message;
     private Toast wrong_message;
+    private Toast out_of_time;
     final Handler handler = new Handler();
 
 
@@ -54,12 +59,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Sets the messages that are going to be displayed when the user selects and answer.
         correct_message = Toast.makeText(getApplicationContext(),"Correct!", Toast.LENGTH_SHORT);
         wrong_message = Toast.makeText(getApplicationContext(),"Wrong!", Toast.LENGTH_SHORT);
+        out_of_time = Toast.makeText(getApplicationContext(),"Out of Time!", Toast.LENGTH_SHORT);
+
 
         setContentView(R.layout.activity_main);
 
         questionNumber=findViewById(R.id.eNumberOfQuestions);
         tQuestion = findViewById(R.id.textViewQuestion);
         score = findViewById(R.id.eScore);
+        timer = findViewById(R.id.timer);
         answer1 = findViewById(R.id.bAnswer1);
         answer2 = findViewById(R.id.bAnswer2);
         answer3 = findViewById(R.id.bAnswer3);
@@ -121,22 +129,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         this.correctAnswer = question.getCorrectAnswer();
-
+        startCountdown();
     }
 
     @Override
     public void onClick(View v) {
         Button button = (Button) v;
-
-
-
         switch(v.getId()) {
             case R.id.bAnswer1:
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
                     pointSystem.increasePoints();
                     this.correct_message.show();
+                    countDownTimer.cancel();
                 } else {
                     this.wrong_message.show();
+                    countDownTimer.cancel();
                 }
 
                 handler.postDelayed(new Runnable(){
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             e.printStackTrace();
                         }
                     }
-                },1500);
+                },1000);
                 break;
 
 
@@ -157,8 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
                     pointSystem.increasePoints();
                     this.correct_message.show();
+                    countDownTimer.cancel();
                 } else {
                     this.wrong_message.show();
+                    countDownTimer.cancel();
                 }
                 handler.postDelayed(new Runnable(){
                     @Override
@@ -175,8 +184,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
                     pointSystem.increasePoints();
                     this.correct_message.show();
+                    countDownTimer.cancel();
                 } else {
                     this.wrong_message.show();
+                    countDownTimer.cancel();
                 }
                 handler.postDelayed(new Runnable(){
                     @Override
@@ -194,8 +205,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
                     pointSystem.increasePoints();
                     this.correct_message.show();
+                    countDownTimer.cancel();
                 } else {
                     this.wrong_message.show();
+                    countDownTimer.cancel();
                 }
                 handler.postDelayed(new Runnable(){
                     @Override
@@ -233,6 +246,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String qNumber = iterator+"/100";
         return qNumber;
     }
+
+    private void startCountdown(){
+        countDownTimer = new CountDownTimer(31000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeft = millisUntilFinished;
+                updateCountdownText();
+            }
+
+            @Override
+            public void onFinish() {
+                out_of_time.show();
+                countDownTimer.cancel();
+                updateCountdownText();
+                handler.postDelayed(new Runnable(){
+                    @Override
+                    public void run(){
+                        try {
+                            loadQuestionElements(getNewQuestion());
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },1000);
+
+            }
+        }.start();
+    }
+
+    private void updateCountdownText(){
+
+        int seconds = (int) (timeLeft / 1000) % 60;
+
+        String timeFormatted = String.valueOf(seconds);
+
+        timer.setText(timeFormatted);
+
+        if (timeLeft < 10000) {
+            timer.setTextColor(Color.RED);
+        }else{
+            timer.setTextColor(Color.BLACK);
+        }
+    }
+
 
 }
 
