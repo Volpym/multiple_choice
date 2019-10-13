@@ -65,7 +65,7 @@ public class Question{
         return correctAnswer;
     }
 
-    public boolean isCorrect(String answer,String correctAnswer){
+    public boolean isCorrect(String answer, String correctAnswer){
         boolean value;
         if (answer.equals(correctAnswer)){
             value = true;
@@ -74,6 +74,8 @@ public class Question{
         }
         return value;
     }
+
+
 
 
 
