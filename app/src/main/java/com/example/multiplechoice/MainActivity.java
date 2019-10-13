@@ -27,14 +27,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<Question> questions = null;
     String correctAnswer;
     private Bundle savedInstanceState;
+    PointSystem pointSystem = new PointSystem();
     int iterator = 0;
     private TextView tQuestion;
+    private TextView questionNumber;
+    private TextView score;
     private Button answer1;
     private Button answer2;
     private Button answer3;
     private Button answer4;
     Question question;
-    private TextView questionNumber;
+
     private Toast correct_message;
     private Toast wrong_message;
     final Handler handler = new Handler();
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         questionNumber=findViewById(R.id.eNumberOfQuestions);
         tQuestion = findViewById(R.id.textViewQuestion);
+        score = findViewById(R.id.eScore);
         answer1 = findViewById(R.id.bAnswer1);
         answer2 = findViewById(R.id.bAnswer2);
         answer3 = findViewById(R.id.bAnswer3);
@@ -100,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         this.tQuestion.setText(question.getQuestion());
+        this.questionNumber.setText(showQuestionNumber(iterator));
+        this.score.setText("Score: "+String.valueOf(pointSystem.getCurrentPoints()));
 
         //resets Buttons' background color
         this.answer1.setBackgroundResource(R.color.default_button);
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.answer2.setText(question.getOption2());
         this.answer3.setText(question.getOption3());
         this.answer4.setText(question.getOption4());
-        this.questionNumber.setText(showQuestionNumber(iterator));
+
 
         this.correctAnswer = question.getCorrectAnswer();
 
@@ -127,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()) {
             case R.id.bAnswer1:
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
+                    pointSystem.increasePoints();
                     this.correct_message.show();
                 } else {
                     this.wrong_message.show();
@@ -137,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run(){
                         try {
                             loadQuestionElements(getNewQuestion());
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -147,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bAnswer2:
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
+                    pointSystem.increasePoints();
                     this.correct_message.show();
                 } else {
                     this.wrong_message.show();
@@ -164,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bAnswer3:
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
+                    pointSystem.increasePoints();
                     this.correct_message.show();
                 } else {
                     this.wrong_message.show();
@@ -182,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bAnswer4:
                 if (this.question.isCorrect(button.getText().toString(), this.correctAnswer)) {
+                    pointSystem.increasePoints();
                     this.correct_message.show();
                 } else {
                     this.wrong_message.show();
